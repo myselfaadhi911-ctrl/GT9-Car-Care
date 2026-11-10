@@ -14,3 +14,10 @@ A responsive static website for GT9 Car Care & Garage.
 
 ## GitHub Pages
 This is a static website. In the repository, open **Settings → Pages**, select **Deploy from a branch**, choose **main** and **/(root)**, then save. The site will be served from the published Pages URL.
+
+
+## GT9 Brand Assets
+- Logo: `assets/gt9-mark.svg` (car emblem only; transparent background)
+- Display font: Nebula (`assets/nebula.woff2`)
+- Supporting font: Helvetica (`assets/helvetica.woff2`)
+- Brand palette: charcoal `#100F0D`, red `#ED1C24`, white `#FFFFFF`.
