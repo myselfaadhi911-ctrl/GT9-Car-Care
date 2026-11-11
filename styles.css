@@ -333,3 +333,23 @@ body.cursor-ready,body.cursor-ready a,body.cursor-ready button{cursor:none}
 .contact-form .form-note{font-size:10px;line-height:1.7;color:#9b958d;margin:0}
 @media(max-width:900px){.service-guide{grid-template-columns:1fr;gap:35px}.service-catalog-grid .service-tile{min-height:345px}.home-service-grid .service-tile{min-height:320px}}
 @media(max-width:700px){.approach-grid,.about-pillar-grid,.contact-guide-grid{grid-template-columns:1fr;gap:10px}.approach-card,.about-pillar,.contact-guide-card{min-height:0;padding:22px}.approach-card h3,.about-pillar h3,.contact-guide-card h3{margin:19px 0 10px}.service-catalog-grid .service-tile{min-height:290px}.home-service-grid .service-tile{min-height:270px}.service-tile-summary{font-size:10px;line-height:1.75;margin:-10px 0 19px}.contact-guide-note{font-size:10px}}
+
+
+/* Persistent GT9 contact actions — direct call and WhatsApp */
+.gt9-contact-dock{position:fixed;right:24px;bottom:22px;z-index:65;display:flex;gap:9px;align-items:center}
+.gt9-contact-action{min-height:58px;display:flex;align-items:center;gap:11px;padding:10px 16px;border:1px solid rgba(255,255,255,.15);border-radius:8px;background:rgba(25,24,22,.96);box-shadow:0 10px 35px rgba(0,0,0,.32);backdrop-filter:blur(14px);transition:transform .25s var(--ease),border-color .25s,background .25s}
+.gt9-contact-action:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.4)}
+.gt9-contact-action svg{width:21px;height:21px;flex:none;fill:currentColor}
+.gt9-contact-action span{display:flex;flex-direction:column;gap:3px}
+.gt9-contact-action small{font-size:8px;letter-spacing:1.7px;line-height:1.1}
+.gt9-contact-action strong{font-size:11px;letter-spacing:.2px;white-space:nowrap}
+.gt9-call-action{color:#fff;border-color:rgba(237,28,36,.5)}
+.gt9-call-action svg{color:#ed1c24}
+.gt9-wa-action{color:#fff;border-color:rgba(37,211,102,.38)}
+.gt9-wa-action svg{color:#25d366}
+.gt9-wa-action:hover{border-color:#25d366}
+.contact-info a[href^="tel:"],.contact-info a[href*="wa.me"]{transition:color .2s}
+.contact-info a[href^="tel:"]:hover{color:#ed1c24}
+.contact-info a[href*="wa.me"]:hover{color:#25d366}
+@media(max-width:600px){.gt9-contact-dock{left:12px;right:12px;bottom:12px;gap:7px}.gt9-contact-action{flex:1;min-width:0;justify-content:center;gap:7px;min-height:52px;padding:8px 9px}.gt9-contact-action svg{width:18px;height:18px}.gt9-contact-action small{font-size:7px;letter-spacing:1px}.gt9-contact-action strong{font-size:9px}.site-footer{padding-bottom:86px}}
+@media(prefers-reduced-motion:reduce){.gt9-contact-action{transition:none}}

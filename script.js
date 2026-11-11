@@ -1,6 +1,6 @@
 // GT9 CAR CARE & GARAGE — shared interactions
-// Add GT9's WhatsApp number in international format (digits only) before launch.
-const GT9_WHATSAPP_NUMBER = "91XXXXXXXXXX";
+const GT9_CALL_NUMBER = "919746438456";
+const GT9_WHATSAPP_NUMBER = "919544439379";
 
 const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
@@ -72,11 +72,10 @@ if (requestedService && serviceSelect) {
   if (option) serviceSelect.value = option.value;
 }
 
-// Email enquiry handoff. No unconfirmed business phone number is required.
+// Send the completed enquiry to GT9's WhatsApp number.
 document.getElementById("enquiry-form")?.addEventListener("submit", event => {
   event.preventDefault();
   const form = new FormData(event.currentTarget);
-  const subject = "GT9 Car Care enquiry — " + form.get("service");
   const message = [
     "Hello GT9 Car Care & Garage,",
     "",
@@ -90,5 +89,6 @@ document.getElementById("enquiry-form")?.addEventListener("submit", event => {
     "",
     "Thank you."
   ].join("\n");
-  window.location.href = "mailto:gt9carcare@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(message);
+  const whatsappUrl = "https://wa.me/" + GT9_WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
+  window.location.href = whatsappUrl;
 });
