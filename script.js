@@ -17,51 +17,7 @@ navLinks?.querySelectorAll("a").forEach(link => link.addEventListener("click", (
 const year = document.getElementById("year");
 if (year) year.textContent = new Date().getFullYear();
 
-// Scroll progress
-const progress = document.querySelector(".scroll-progress");
-const updateProgress = () => {
-  if (!progress) return;
-  const max = document.documentElement.scrollHeight - window.innerHeight;
-  const percent = max > 0 ? (window.scrollY / max) * 100 : 0;
-  progress.style.width = percent + "%";
-};
-window.addEventListener("scroll", updateProgress, {passive:true});
-updateProgress();
-
-// Reveal content as it enters the viewport
-const revealItems = document.querySelectorAll(".reveal");
-if ("IntersectionObserver" in window) {
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        obs.unobserve(entry.target);
-      }
-    });
-  }, {threshold:0.13, rootMargin:"0px 0px -35px 0px"});
-  revealItems.forEach(item => observer.observe(item));
-} else {
-  revealItems.forEach(item => item.classList.add("is-visible"));
-}
-
-// Custom precision-reticle cursor for mouse devices only
-const finePointer = window.matchMedia("(hover:hover) and (pointer:fine)").matches;
-const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const dot = document.querySelector(".cursor-dot");
-const ring = document.querySelector(".cursor-ring");
-if (finePointer && !reduceMotion && dot && ring) {
-  document.body.classList.add("cursor-ready");
-  window.addEventListener("mousemove", event => {
-    const x = event.clientX;
-    const y = event.clientY;
-    dot.style.transform = `translate3d(${x}px,${y}px,0)`;
-    ring.style.transform = `translate3d(${x}px,${y}px,0)`;
-  }, {passive:true});
-  document.querySelectorAll("a,button,input,textarea,select,[role='button']").forEach(el => {
-    el.addEventListener("mouseenter", () => document.body.classList.add("cursor-hover"));
-    el.addEventListener("mouseleave", () => document.body.classList.remove("cursor-hover"));
-  });
-}
+// Scroll progress, reveals, cursor, background and type animation live in motion.js
 
 // Fill the service selector from links on the Services page.
 const params = new URLSearchParams(window.location.search);

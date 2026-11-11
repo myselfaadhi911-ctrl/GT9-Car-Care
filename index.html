@@ -4,16 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#100F0D">
+<meta name="color-scheme" content="dark">
+<script>(function(d){d.className+=' js';if(matchMedia('(prefers-reduced-motion:reduce)').matches)d.className+=' rm';setTimeout(function(){if(!window.__gt9ok){d.classList.remove('js');d.classList.add('is-loaded')}},6000);setTimeout(function(){d.classList.add('is-loaded')},5000)})(document.documentElement)</script>
 <meta name="description" content="GT9 Car Care & Garage offers car accessories, electrical and mechanical works, AC services, body repairs, painting, detailing, upholstery and complete car customization under one roof.">
 <title>GT9 Car Care & Garage | Home</title>
 <link rel="icon" type="image/svg+xml" href="assets/gt9-mark.svg">
 <link rel="preload" href="assets/nebula.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/helvetica.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="motion.css">
 </head>
 <body data-page="home">
+<div class="curtain" aria-hidden="true"><div class="curtain-inner"><img src="assets/gt9-mark.svg" alt="" width="650" height="104"><i></i></div></div>
 <div class="scroll-progress" aria-hidden="true"></div>
-<div class="cursor-dot" aria-hidden="true"></div><div class="cursor-ring" aria-hidden="true"><span></span></div>
+
 <header class="site-header">
   <a class="brand" href="index.html" aria-label="GT9 home"><img class="brand-logo" src="assets/gt9-mark.svg" alt="GT9 automotive emblem"></a>
   <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
@@ -156,5 +160,6 @@
       </a>
     </div><span>© <span id="year"></span> GT9 CAR CARE & GARAGE</span><a href="contact.html">START A PROJECT <b>↗</b></a></div>
 </footer>
-<script src="script.js"></script>
+<script src="script.js" defer></script>
+<script src="motion-loader.js" defer></script>
 </body></html>

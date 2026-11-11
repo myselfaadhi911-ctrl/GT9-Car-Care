@@ -1,0 +1,168 @@
+/* ==========================================================================
+   GT9 MOTION LAYER  (loads after styles.css, driven by motion.js)
+   - flowing canvas background   - animated cursor      - per-letter type
+   - scroll reveals / parallax   - page curtain         - card tilt + spotlight
+   Everything is gated on html.js so the site still works with JS off, and
+   html.rm (prefers-reduced-motion) turns the movement down to nothing.
+   ========================================================================== */
+
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes curtain-pulse{50%{opacity:.55;transform:scale(.985)}}
+@keyframes curtain-load{to{transform:scaleX(1)}}
+@keyframes ripple{to{transform:scale(7);opacity:0}}
+@keyframes glow-wave{0%,100%{color:#ed1c24;text-shadow:0 0 0 rgba(237,28,36,0)}45%{color:#ff6b5f;text-shadow:0 0 34px rgba(237,28,36,.85)}}
+@keyframes letter-float{50%{translate:0 -.035em}}
+@keyframes ticker-seamless{to{transform:translateX(calc(var(--shift,1000px)*-1))}}
+@keyframes dock-pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.4)}70%,100%{box-shadow:0 0 0 14px rgba(37,211,102,0)}}
+
+/* ---------- Background flow (canvas injected by motion.js) ---------- */
+#flow{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;display:block}
+/* let the flow show through the section panels while keeping text readable */
+.home-intro{background:rgba(16,15,13,.5)}
+.home-services,.principles-section,.contact-bottom{background:rgba(23,22,20,.6)}
+.home-approach,.about-pillars,.service-guide,.contact-guide{background:rgba(21,20,18,.64)}
+.founders-section{background:rgba(17,16,15,.68)}
+.home-cta,.about-quote,.service-bottom-cta{background:radial-gradient(ellipse at 50% 120%,rgba(237,28,36,.16),transparent 52%),rgba(17,16,15,.58)}
+.site-footer{background:rgba(13,12,11,.84)}
+.approach-card,.about-pillar,.contact-guide-card{background-color:rgba(27,26,24,.86)}
+.founder-card,.contact-form{background-color:rgba(26,25,23,.9)}
+
+/* ---------- Page curtain (first load + page-to-page) ---------- */
+html:not(.js) .curtain,html.rm .curtain{display:none}
+.curtain{position:fixed;inset:0;z-index:9999;background:#0d0c0b;display:grid;place-items:center;transform:translateY(0);transition:transform .9s cubic-bezier(.76,0,.24,1);will-change:transform}
+.curtain:after{content:"";position:absolute;left:0;right:0;top:99.5%;height:9vh;background:#0d0c0b;border-radius:0 0 50% 50%/0 0 100% 100%}
+.curtain-inner{display:grid;gap:22px;justify-items:center;transition:opacity .35s}
+.curtain img{width:min(230px,56vw);height:auto;animation:curtain-pulse 1.5s ease-in-out infinite}
+.curtain i{display:block;position:relative;overflow:hidden;width:min(230px,56vw);height:2px;background:rgba(255,255,255,.1)}
+.curtain i:after{content:"";position:absolute;inset:0;background:var(--accent);box-shadow:0 0 14px var(--accent);transform:scaleX(0);transform-origin:left;animation:curtain-load 1.2s var(--ease) forwards}
+html.is-loaded .curtain{transform:translateY(calc(-100% - 10vh));pointer-events:none}
+html.is-loaded .curtain-inner{opacity:0}
+
+/* ---------- Scroll progress (transform, not width = no layout) ---------- */
+.scroll-progress{width:100%;transform:scaleX(0);transform-origin:left}
+
+/* ---------- Header: hides on scroll-down, returns on scroll-up ---------- */
+.site-header{transition:transform .6s var(--ease),background .3s}
+.site-header.hide{transform:translateY(-100%)}
+.site-header:focus-within{transform:none}
+
+/* ---------- Reveal system ---------- */
+.js .reveal{opacity:0;translate:0 42px;transition:opacity .95s var(--ease) calc(var(--d,0)*1ms),translate .95s var(--ease) calc(var(--d,0)*1ms),transform .55s var(--ease),border-color .35s,background .3s,box-shadow .3s}
+.js .reveal.is-visible{opacity:1;translate:0 0}
+html.rm .reveal{opacity:1!important;translate:none!important}
+/* image wipe + zoom settle */
+.js .intro-visual.reveal,.js .story-image.reveal{opacity:1;translate:0 0;clip-path:inset(0 0 100% 0);transition:clip-path 1.4s var(--ease)}
+.js .intro-visual.reveal.is-visible,.js .story-image.reveal.is-visible{clip-path:inset(0)}
+.js .intro-visual.reveal .visual-photo{scale:1.28;transition:scale 2s var(--ease),transform 1.1s var(--ease)}
+.js .intro-visual.reveal.is-visible .visual-photo{scale:1}
+.js .founder-card.reveal .founder-photo{scale:1.2;transition:scale 1.8s var(--ease),transform 1s var(--ease),filter .5s}
+.js .founder-card.reveal.is-visible .founder-photo{scale:1}
+/* eyebrow accent bar draws itself */
+.js .eyebrow.reveal i{transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease) .25s}
+.js .eyebrow.reveal.is-visible i{transform:scaleX(1)}
+/* hero furniture fades in after the curtain lifts */
+.js .hero-bottom,.js .hero-vertical,.js .inner-hero-index{opacity:0;transition:opacity 1.2s ease 1.5s}
+html.is-loaded .hero-bottom,html.is-loaded .hero-vertical,html.is-loaded .inner-hero-index{opacity:1}
+
+/* ---------- Animated type ---------- */
+g-w,g-c,g-sr{display:inline-block}
+.sr-only{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.split .w{display:inline-block;white-space:nowrap}
+.split .c{display:inline-block}
+.js .split .c{opacity:0;transform:perspective(520px) translateY(.75em) rotateX(-85deg);transform-origin:50% 100%}
+.js .hero-title .c,.js .inner-hero h1 .c{filter:blur(8px)}
+.js .split.in .c{opacity:1;transform:none;filter:none;transition:opacity .8s var(--ease) calc(var(--d,0)*1ms),transform 1s var(--ease) calc(var(--d,0)*1ms),filter .9s var(--ease) calc(var(--d,0)*1ms),color .3s,text-shadow .3s}
+.js .split.settled .c{transition:transform .5s var(--ease),color .3s,text-shadow .3s}
+/* hover: letters lift and light up one by one (hero uses the cursor-proximity effect instead) */
+.split.proximity.settled .c{transition:color .3s,text-shadow .3s}
+.split.settled:not(.proximity) .c:hover{transform:translateY(-.07em) scale(1.08);color:var(--accent);text-shadow:0 0 26px rgba(237,28,36,.55)}
+.split.settled:not(.proximity) span .c:hover,.split.settled:not(.proximity) em .c:hover{color:#fff}
+/* hero: neon wave through the red line + gentle float */
+.hero-title.settled em .c,.inner-hero h1.settled em .c{animation:glow-wave 3.8s ease-in-out infinite,letter-float 4.6s ease-in-out infinite;animation-delay:calc(var(--i,0)*.16s),calc(var(--i,0)*.2s)}
+.hero-title.settled span .c,.inner-hero h1.settled span .c{animation:letter-float 5.2s ease-in-out infinite;animation-delay:calc(var(--i,0)*.22s)}
+/* the old whole-word slide is replaced by the per-letter reveal */
+.js .hero-title span,.js .hero-title em{animation:none}
+/* the big red CTA words get the same travelling glow as the hero */
+.home-cta h2.settled span .c,.service-bottom-cta h2.settled span .c,.about-quote h2.settled span .c{animation:glow-wave 4.2s ease-in-out infinite;animation-delay:calc(var(--i,0)*.15s)}
+
+/* ---------- Buttons & links ---------- */
+.button{position:relative;overflow:hidden;isolation:isolate}
+.button:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.3) 50%,transparent 70%);transform:translateX(-130%);transition:transform .9s var(--ease)}
+.button:hover:before{transform:translateX(130%)}
+.text-link{position:relative}
+.text-link:after{content:"";position:absolute;left:0;bottom:-7px;width:100%;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .55s var(--ease)}
+.text-link:hover:after{transform:scaleX(1);transform-origin:left}
+.nav-links .nav-cta{transition:transform .35s var(--ease),border-color .3s,background .3s}
+.nav-links .nav-cta:hover{border-color:var(--accent);background:rgba(237,28,36,.12)}
+.gt9-wa-action{animation:dock-pulse 2.8s ease-out infinite}
+
+/* ---------- Cards: cursor spotlight + 3D tilt ---------- */
+.service-catalog-grid,.approach-grid,.about-pillar-grid,.contact-guide-grid,.founders-grid{perspective:1300px}
+.approach-card,.about-pillar,.contact-guide-card,.founder-card,.contact-form{background-image:radial-gradient(420px circle at var(--px,50%) var(--py,-60%),rgba(237,28,36,.14),transparent 60%)}
+.service-tile:before{background:radial-gradient(380px circle at var(--px,50%) var(--py,-60%),rgba(237,28,36,.26),transparent 60%),linear-gradient(180deg,rgba(9,9,8,.28) 0%,rgba(9,9,8,.1) 38%,rgba(9,9,8,.88) 100%),linear-gradient(90deg,rgba(9,9,8,.2),transparent 75%)}
+/* backdrop-filter on 20+ tiles was the heaviest paint cost on the page, so solid tint instead */
+.service-tile-index,.service-tile-cta{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(10,10,9,.74)}
+.gt9-contact-action{backdrop-filter:none;-webkit-backdrop-filter:none}
+
+/* ---------- Parallax hooks (JS sets --py / --hx on visible elements only) ---------- */
+.js .hero-image,.js .inner-hero-bg{inset:-13% -3% 0;translate:var(--hx,0px) var(--py,0px)}
+.js .visual-photo{inset:-9% 0;translate:0 var(--py,0px)}
+.hero-stamp img{translate:var(--sx,0px) var(--sy,0px);rotate:var(--sr,0deg)}
+
+/* ---------- Ticker: seamless loop, speed follows scroll velocity ---------- */
+.ticker-track b{display:inline-block;animation:spin 7s linear infinite}
+.ticker-track.seamless{min-width:0;gap:0;justify-content:flex-start;animation:ticker-seamless 40s linear infinite}
+.ticker-track.seamless>*{flex:none;margin-right:26px}
+@media(max-width:700px){.ticker-track.seamless>*{margin-right:20px}}
+
+/* ---------- CTA orbit gets two extra rings ---------- */
+.cta-orbit:before{content:"";position:absolute;inset:-70px;border:1px dashed rgba(237,28,36,.24);border-radius:50%;animation:spin 50s linear infinite}
+.cta-orbit:after{content:"";position:absolute;inset:-70px;border-radius:50%;animation:spin 14s linear infinite;background:radial-gradient(circle at 50% 0,#ed1c24 0 4px,rgba(237,28,36,0) 6px)}
+
+/* ---------- Pause what you can't see ---------- */
+.offscreen .hero-image,.offscreen .inner-hero-bg,.offscreen .cta-orbit,.offscreen .cta-orbit:before,.offscreen .cta-orbit:after,.offscreen .ticker-track,.offscreen .ticker-track b{animation-play-state:paused}
+/* below-the-fold sections skip layout/paint until they're near the screen */
+.home-approach,.home-services,.home-cta,.about-pillars,.principles-section,.founders-section,.service-guide,.contact-guide,.about-quote,.service-bottom-cta,.contact-bottom,.site-footer{content-visibility:auto;contain-intrinsic-size:auto 720px}
+
+/* ---------- Cursor (built by motion.js, mouse devices only) ---------- */
+.cursor-dot,.cursor-ring,.cursor-trail{position:fixed;left:0;top:0;pointer-events:none;z-index:10000;opacity:0;will-change:transform;transition:opacity .3s}
+.cursor-dot{width:7px;height:7px;margin:-3.5px 0 0 -3.5px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px 2px rgba(237,28,36,.75)}
+.cursor-trail{width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;background:var(--accent);transition:none}
+.cursor-ring{width:44px;height:44px;margin:-22px 0 0 -22px;display:grid;place-items:center}
+.cursor-ring i{position:absolute;inset:0;border:1px solid rgba(237,28,36,.8);border-radius:50%;transition:transform .5s var(--ease),background .3s,border-color .3s}
+.cursor-ring i:before,.cursor-ring i:after{content:"";position:absolute;background:rgba(237,28,36,.85)}
+.cursor-ring i:before{width:1px;height:6px;top:-4px;left:50%}
+.cursor-ring i:after{height:1px;width:6px;right:-4px;top:50%}
+.cursor-ring span{position:relative;font:700 8px/1 HelveticaGT9,Helvetica,Arial,sans-serif;letter-spacing:1.5px;color:#fff;opacity:0;transition:opacity .25s}
+body.cursor-ready .cursor-dot,body.cursor-ready .cursor-ring{opacity:1}
+body.cursor-ready .cursor-trail{opacity:var(--o,0)}
+body.cur-link .cursor-ring i{transform:scale(1.5);background:rgba(237,28,36,.14);border-color:var(--accent)}
+body.cur-link .cursor-ring span,body.cur-view .cursor-ring span{opacity:1}
+body.cur-link .cursor-ring span{font-size:15px}
+body.cur-view .cursor-ring i{transform:scale(2.1);background:rgba(237,28,36,.9);border-color:var(--accent)}
+body.cur-down .cursor-ring i{transform:scale(.72)}
+body.cur-down.cur-link .cursor-ring i,body.cur-down.cur-view .cursor-ring i{transform:scale(1.25)}
+body.cur-text .cursor-dot,body.cur-text .cursor-ring,body.cur-out .cursor-dot,body.cur-out .cursor-ring{opacity:0}
+body.cur-text .cursor-trail,body.cur-out .cursor-trail{opacity:0}
+.cursor-ripple{position:fixed;z-index:9999;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;border:1.5px solid var(--accent);pointer-events:none;animation:ripple .75s var(--ease) forwards}
+body.cursor-ready,body.cursor-ready *{cursor:none!important}
+body.cursor-ready input,body.cursor-ready textarea{cursor:text!important}
+body.cursor-ready select{cursor:pointer!important}
+@media(hover:none),(pointer:coarse){.cursor-dot,.cursor-ring,.cursor-trail{display:none}}
+
+/* ---------- Lighter hero art on phones ---------- */
+@media(max-width:700px){
+  .hero-image{background-image:url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1000&q=70')}
+  .about-bg{background-image:url('https://images.unsplash.com/photo-1489824904134-891ab64532f1?auto=format&fit=crop&w=1000&q=70')}
+  .services-bg{background-image:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=70')}
+  .contact-bg{background-image:url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1000&q=70')}
+  .js .hero-image,.js .inner-hero-bg{inset:-8% -3% 0}
+  .home-approach,.home-services,.home-cta,.about-pillars,.principles-section,.founders-section,.service-guide,.contact-guide,.about-quote,.service-bottom-cta,.contact-bottom,.site-footer{contain-intrinsic-size:auto 900px}
+}
+
+/* ---------- Reduced motion: keep layout, drop movement ---------- */
+@media(prefers-reduced-motion:reduce){
+  .cta-orbit:before,.cta-orbit:after,.ticker-track b,.gt9-wa-action{animation:none}
+  .js .hero-bottom,.js .hero-vertical,.js .inner-hero-index{opacity:1;transition:none}
+  .site-header{transition:none}
+}
