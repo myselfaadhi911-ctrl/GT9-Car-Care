@@ -250,3 +250,15 @@ body.cursor-ready,body.cursor-ready a,body.cursor-ready button{cursor:none}
 @media(max-width:1000px){.service-catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.service-tile{min-height:320px}}
 @media(max-width:700px){.service-catalog{padding-top:8px;padding-bottom:75px}.service-catalog-grid{grid-template-columns:1fr;gap:11px}.service-tile{min-height:260px;padding:20px}.service-tile h2{font-size:27px;margin:20px 0}.service-tile-cta{font-size:7px}.service-assurance{gap:13px;padding:19px 12px}.service-assurance span{font-size:7px;letter-spacing:1.2px}}
 @media(prefers-reduced-motion:reduce){.service-tile-image{transition:none}}
+
+
+/* GT9 contact and social links */
+.footer-socials{display:flex;align-items:center;gap:10px;margin-right:2px}
+.footer-socials a{width:32px;height:32px;display:grid;place-items:center;border:1px solid #403b36;color:#c9c4bc;transition:color .25s,border-color .25s,background .25s,transform .25s}
+.footer-socials a:hover{color:#fff;border-color:var(--accent);background:rgba(237,28,36,.12);transform:translateY(-3px)}
+.footer-socials svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.footer-socials svg path{fill:currentColor;stroke:none}
+.footer-socials svg .social-dot{fill:currentColor;stroke:none}
+.contact-info a{color:#f1eeea;text-decoration:none;transition:color .25s}
+.contact-info a:hover{color:var(--accent)}
+@media(max-width:700px){.footer-socials{order:0}.footer-right{align-items:flex-end}.footer-socials a{width:30px;height:30px}}
