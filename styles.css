@@ -301,3 +301,35 @@ body.cursor-ready,body.cursor-ready a,body.cursor-ready button{cursor:none}
 .home-service-grid .service-tile{min-height:270px}
 .home-services-footer{display:flex;justify-content:flex-end;margin-top:28px}
 @media(max-width:700px){.home-service-grid .service-tile{min-height:205px}}
+
+
+/* Expanded GT9 page context — editorial content blocks */
+.home-approach,.about-pillars,.service-guide,.contact-guide{background:#151412;border-top:1px solid #302d29;border-bottom:1px solid #302d29}
+.home-approach-head{max-width:780px;margin-bottom:38px}
+.home-approach-head>.display-title,.contact-guide-head>.display-title{margin:22px 0}
+.home-approach-head>p:last-child,.service-guide-copy>p:not(.eyebrow),.contact-guide-note{max-width:650px;color:#aaa69f;font-size:12px;line-height:2}
+.approach-grid,.about-pillar-grid,.contact-guide-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.approach-card,.about-pillar,.contact-guide-card{position:relative;min-height:245px;padding:25px 23px;background:#1b1a18;border:1px solid #36312d;display:flex;flex-direction:column;align-items:flex-start}
+.approach-card>span,.about-pillar>span,.contact-guide-card>span{font-size:8px;letter-spacing:2px;color:#a6a097}
+.approach-card h3,.about-pillar h3,.contact-guide-card h3{font:400 22px/1.08 Nebula,sans-serif;margin:25px 0 12px;color:#f5f2ed}
+.approach-card p,.about-pillar p,.contact-guide-card p{font-size:11px;line-height:1.9;color:#aaa69f;margin:0 0 24px}
+.approach-card .text-link{margin-top:auto;font-size:8px}
+.about-pillars .section-head{margin-bottom:32px}
+.about-pillar{min-height:220px}
+.service-tile-summary{font-size:11px;line-height:1.85;color:#e0dbd4;margin:-12px 0 24px;max-width:470px}
+.service-catalog-grid .service-tile{min-height:365px}
+.home-service-grid .service-tile{min-height:340px}
+.service-guide{display:grid;grid-template-columns:.9fr 1.1fr;gap:8%;align-items:center}
+.service-guide-copy .display-title{margin:24px 0}
+.service-guide-copy .button{margin-top:22px}
+.service-guide-steps{border-top:1px solid #3a3531}
+.guide-step{display:grid;grid-template-columns:42px 1fr;gap:15px;padding:23px 0;border-bottom:1px solid #3a3531}
+.guide-step>span{font:400 20px Nebula;color:var(--accent)}
+.guide-step h3{font:400 19px Nebula;margin:0 0 8px}
+.guide-step p{font-size:11px;line-height:1.85;color:#aaa69f;margin:0}
+.contact-guide-head{max-width:660px;margin-bottom:34px}
+.contact-guide-card{min-height:215px}
+.contact-guide-note{max-width:790px;margin:26px 0 0}
+.contact-form .form-note{font-size:10px;line-height:1.7;color:#9b958d;margin:0}
+@media(max-width:900px){.service-guide{grid-template-columns:1fr;gap:35px}.service-catalog-grid .service-tile{min-height:345px}.home-service-grid .service-tile{min-height:320px}}
+@media(max-width:700px){.approach-grid,.about-pillar-grid,.contact-guide-grid{grid-template-columns:1fr;gap:10px}.approach-card,.about-pillar,.contact-guide-card{min-height:0;padding:22px}.approach-card h3,.about-pillar h3,.contact-guide-card h3{margin:19px 0 10px}.service-catalog-grid .service-tile{min-height:290px}.home-service-grid .service-tile{min-height:270px}.service-tile-summary{font-size:10px;line-height:1.75;margin:-10px 0 19px}.contact-guide-note{font-size:10px}}

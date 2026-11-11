@@ -72,22 +72,23 @@ if (requestedService && serviceSelect) {
   if (option) serviceSelect.value = option.value;
 }
 
-// WhatsApp enquiry handoff
+// Email enquiry handoff. No unconfirmed business phone number is required.
 document.getElementById("enquiry-form")?.addEventListener("submit", event => {
   event.preventDefault();
   const form = new FormData(event.currentTarget);
+  const subject = "GT9 Car Care enquiry — " + form.get("service");
   const message = [
-    "Hello GT9 Car Care & Garage, I'd like to enquire about a service.",
+    "Hello GT9 Car Care & Garage,",
+    "",
+    "I would like to enquire about a service.",
     "",
     "Name: " + form.get("name"),
     "Phone: " + form.get("phone"),
     "Vehicle: " + (form.get("vehicle") || "Not specified"),
     "Service: " + form.get("service"),
-    "Message: " + (form.get("message") || "Not specified")
+    "Message: " + (form.get("message") || "Not specified"),
+    "",
+    "Thank you."
   ].join("\n");
-  if (!/^\d{10,15}$/.test(GT9_WHATSAPP_NUMBER) || GT9_WHATSAPP_NUMBER.includes("X")) {
-    alert("Please add GT9's WhatsApp number in script.js before using the enquiry form.");
-    return;
-  }
-  window.open("https://wa.me/" + GT9_WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message), "_blank", "noopener");
+  window.location.href = "mailto:gt9carcare@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(message);
 });
