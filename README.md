@@ -1,23 +1,30 @@
-# GT9 Car Care & Garage Website
+# GT9 Car Care & Garage
 
-A responsive static website for GT9 Car Care & Garage.
+A four-page, responsive automotive website built as a static site for GitHub Pages.
 
-## Files
-- `index.html` — page structure and content
-- `styles.css` — responsive styling and visual design
-- `script.js` — mobile navigation and WhatsApp enquiry form
+## Pages
+- `index.html` — Home
+- `about.html` — About GT9
+- `services.html` — detailing, paint correction, PPF/surface protection, wrapping, garage and off-road upgrades
+- `contact.html` — enquiry form and contact details
 
-## Before publishing
-1. Replace `91XXXXXXXXXX` in `script.js` with GT9's WhatsApp number (digits only, country code included).
-2. Update the placeholder phone number and workshop location in `index.html`.
-3. Replace sample automotive image URLs with GT9's own project photos where available.
+## Brand system
+- Logo: `assets/gt9-mark.svg` — emblem only
+- Primary font: Nebula (`assets/nebula.woff2`)
+- Secondary font: Helvetica (`assets/helvetica.woff2`)
+- Colours: charcoal `#100F0D`, red `#ED1C24`, white `#FFFFFF`
+
+## Interactions
+- Animated cursor reticle on mouse / fine-pointer devices
+- Scroll-triggered content reveals
+- Animated hero, ticker, navigation and service cards
+- Mobile navigation and touch-friendly layout
+- Reduced-motion accessibility support
+
+## Before launch
+1. Replace `91XXXXXXXXXX` in `script.js` with the real GT9 WhatsApp number (digits only, include country code).
+2. Update the placeholder phone number and workshop address in `contact.html`.
+3. Replace the sample Unsplash automotive images with GT9 project photos where available.
 
 ## GitHub Pages
-This is a static website. In the repository, open **Settings → Pages**, select **Deploy from a branch**, choose **main** and **/(root)**, then save. The site will be served from the published Pages URL.
-
-
-## GT9 Brand Assets
-- Logo: `assets/gt9-mark.svg` (car emblem only; transparent background)
-- Display font: Nebula (`assets/nebula.woff2`)
-- Supporting font: Helvetica (`assets/helvetica.woff2`)
-- Brand palette: charcoal `#100F0D`, red `#ED1C24`, white `#FFFFFF`.
+Publish from branch `main`, folder `/(root)`. The Pages workflow deploys the static site automatically after changes are pushed.
