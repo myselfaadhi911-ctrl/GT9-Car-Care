@@ -296,3 +296,8 @@ body.cursor-ready,body.cursor-ready a,body.cursor-ready button{cursor:none}
 .founder-details p{margin:0;font-size:9px;letter-spacing:2px;font-weight:700;color:#aaa49b}
 @media(max-width:700px){.founders-heading{display:block;margin-bottom:30px}.founders-intro{margin-top:24px}.founders-grid{grid-template-columns:1fr;gap:16px}.founder-photo-wrap{height:clamp(330px,105vw,490px)}.founder-details{padding:20px}.founder-details h3{font-size:27px}}
 @media(prefers-reduced-motion:reduce){.founder-photo,.founder-card{transition:none}}
+
+/* GT9 complete-service grid on the Home page */
+.home-service-grid .service-tile{min-height:270px}
+.home-services-footer{display:flex;justify-content:flex-end;margin-top:28px}
+@media(max-width:700px){.home-service-grid .service-tile{min-height:205px}}
