@@ -353,3 +353,10 @@ body.cursor-ready,body.cursor-ready a,body.cursor-ready button{cursor:none}
 .contact-info a[href*="wa.me"]:hover{color:#25d366}
 @media(max-width:600px){.gt9-contact-dock{left:12px;right:12px;bottom:12px;gap:7px}.gt9-contact-action{flex:1;min-width:0;justify-content:center;gap:7px;min-height:52px;padding:8px 9px}.gt9-contact-action svg{width:18px;height:18px}.gt9-contact-action small{font-size:7px;letter-spacing:1px}.gt9-contact-action strong{font-size:9px}.site-footer{padding-bottom:86px}}
 @media(prefers-reduced-motion:reduce){.gt9-contact-action{transition:none}}
+
+
+/* Keep the contact icons visually balanced on the About page */
+body[data-page="about"] .gt9-contact-action{min-height:52px;padding:8px 12px;gap:8px}
+body[data-page="about"] .gt9-contact-action svg{width:16px;height:16px}
+body[data-page="about"] .gt9-contact-action small{font-size:7px}
+body[data-page="about"] .gt9-contact-action strong{font-size:10px}
