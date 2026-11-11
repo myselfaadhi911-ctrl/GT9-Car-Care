@@ -226,3 +226,27 @@ body.cursor-ready,body.cursor-ready a,body.cursor-ready button{cursor:none}
 .service-assurance i{width:5px;height:5px;background:var(--accent);transform:rotate(45deg)}
 @media(max-width:900px){.service-catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.service-catalog{padding-top:8px;padding-bottom:75px}.service-catalog-grid{grid-template-columns:1fr;gap:10px}.service-tile{min-height:185px;padding:21px}.service-tile h2{font-size:26px;margin:20px 0}.service-assurance{gap:13px;padding:19px 12px}.service-assurance span{font-size:7px;letter-spacing:1.2px}}
+
+
+/* Photo-led GT9 service cards */
+.service-catalog{padding-top:15px;padding-bottom:100px}
+.service-catalog-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.service-tile{min-height:340px;padding:23px 22px 21px;position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;overflow:hidden;isolation:isolate;background:#11100f;border:1px solid rgba(255,255,255,.11);transition:transform .55s var(--ease),border-color .35s}
+.service-tile-image{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.015);filter:saturate(.78) contrast(1.04);transition:transform 1s var(--ease),filter .7s var(--ease)}
+.service-tile:before{content:"";position:absolute;inset:0;z-index:-1;width:auto;height:auto;top:0;right:0;border-radius:0;background:linear-gradient(180deg,rgba(9,9,8,.28) 0%,rgba(9,9,8,.1) 38%,rgba(9,9,8,.88) 100%),linear-gradient(90deg,rgba(9,9,8,.2),transparent 75%);transition:opacity .45s}
+.service-tile:after{content:"";position:absolute;inset:10px;z-index:2;border:1px solid rgba(255,255,255,.15);pointer-events:none;transition:border-color .35s}
+.service-tile:hover{transform:translateY(-7px);border-color:rgba(237,28,36,.75)}
+.service-tile:hover:before{transform:none;opacity:1}
+.service-tile:hover:after{border-color:rgba(237,28,36,.62)}
+.service-tile:hover .service-tile-image{transform:scale(1.09);filter:saturate(.98) contrast(1.06)}
+.service-tile-index{position:relative;z-index:3;padding:8px 10px;background:rgba(10,10,9,.58);border:1px solid rgba(255,255,255,.19);backdrop-filter:blur(8px);font-size:8px;letter-spacing:2px;color:#fff}
+.service-tile h2{position:relative;z-index:3;max-width:94%;font:400 clamp(22px,2.25vw,31px)/1.08 Nebula,sans-serif;text-transform:uppercase;margin:24px 0 19px;color:#fff;text-shadow:0 2px 16px rgba(0,0,0,.65);overflow-wrap:anywhere}
+.service-tile-cta{position:relative;z-index:3;display:flex;align-items:center;gap:12px;padding:10px 12px;background:rgba(10,10,9,.58);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(8px);font-size:7px;font-weight:700;letter-spacing:1.6px;color:#f5f2ed}
+.service-tile-cta b{font-size:17px;color:var(--accent);transition:transform .3s}
+.service-tile:hover .service-tile-cta b{transform:translate(4px,-3px)}
+.service-assurance{margin-top:30px;padding:22px 24px;border:1px solid #38332f;background:rgba(255,255,255,.025);display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
+.service-assurance span{font-size:9px;font-weight:700;letter-spacing:2px;color:#e0dbd4}
+.service-assurance i{width:5px;height:5px;background:var(--accent);transform:rotate(45deg)}
+@media(max-width:1000px){.service-catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.service-tile{min-height:320px}}
+@media(max-width:700px){.service-catalog{padding-top:8px;padding-bottom:75px}.service-catalog-grid{grid-template-columns:1fr;gap:11px}.service-tile{min-height:260px;padding:20px}.service-tile h2{font-size:27px;margin:20px 0}.service-tile-cta{font-size:7px}.service-assurance{gap:13px;padding:19px 12px}.service-assurance span{font-size:7px;letter-spacing:1.2px}}
+@media(prefers-reduced-motion:reduce){.service-tile-image{transition:none}}
