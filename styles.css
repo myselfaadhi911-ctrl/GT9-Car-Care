@@ -360,3 +360,15 @@ body[data-page="about"] .gt9-contact-action{min-height:52px;padding:8px 12px;gap
 body[data-page="about"] .gt9-contact-action svg{width:16px;height:16px}
 body[data-page="about"] .gt9-contact-action small{font-size:7px}
 body[data-page="about"] .gt9-contact-action strong{font-size:10px}
+
+
+/* GT9 brand name as the homepage hero headline */
+.hero-brand-title{font-size:clamp(64px,9.2vw,132px)}
+.hero-mobile-break{display:none}
+@media(max-width:700px){
+  .hero-brand-title{font-size:clamp(48px,13.5vw,84px)}
+  .hero-mobile-break{display:block}
+}
+@media(max-width:420px){
+  .hero-brand-title{font-size:clamp(43px,12vw,56px)}
+}
